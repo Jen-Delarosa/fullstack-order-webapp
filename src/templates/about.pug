@@ -1,0 +1,46 @@
+//-Converted using https://html-to-pug.com
+doctype html 
+html
+  include header.pug
+  block content 
+  h1 Flower Company
+  div#all
+    div#main
+      img(src='/images/main.jpg' width='500' height='250' alt='Blue flowers')
+    div#about
+      p
+        span
+          | At Flower Company we ship flower bouquets to those that you 
+          em care
+          |  for.
+          |                 We have a 
+          strong variety
+          |  of flowers to chose from.
+          |                 Additionally we provide handwritten notes attached to the bouquets.
+      p
+        span
+          | We provide customers the option to make custom orders. Along with custom orders we have sets to choose
+          | from.
+          | Sets are categorized in the following:
+      ul
+        li Colors
+        li Flower Types
+        li Special Themes
+      h2
+        | Flower Company people
+      #staff
+        p
+          img(src='/images/random_woman.jpg' width='50' height='50' alt='Woman')
+          |                 Mary
+          br
+          span President
+        p
+          img(src='/images/random_woman.jpg' width='50' height='50' alt='Woman')
+          |                 Julia
+          br
+          span Vice President
+        p
+          img(src='/images/random_woman.jpg' width='50' height='50' alt='Woman')
+          |                 Mrs.Thompson
+          br
+          span CEO
