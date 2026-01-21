@@ -1,0 +1,81 @@
+//- This page was converted using using https://html-to-pug.com
+doctype html 
+html 
+  include header.pug 
+
+    //- link(rel='stylesheet' href='/css/main.css')
+    //- link(href='https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Gravitas+One&display=swap' rel='stylesheet')
+  block content
+    h1
+      | Order Tracking
+    if notes == "updated shipping method"
+      div#message
+        | Your shipping method has been successfuly updated
+
+    if status == "Placed" && notes != "updated shipping method"
+      div#message
+        | Your order is still being processed.
+        br
+        | Your order hasn&apos;t been packed yet.
+
+    if status == "Shipped"
+      div#message
+        | Your order is on it&apos;s way.
+        br
+        | Your order will arrive soon.
+
+    if status == "Arrived"
+      div#message
+        | Your order has been delivered.
+    if status == "Cancelled"
+      div#message
+        | This order has been cancelled
+       
+
+    #left
+      table#renderTable
+        tr
+          th(colspan='2')  Order Details 
+        tr
+          td  Order Id:
+          td= order_id
+        tr
+          td  Product:
+          td= product
+        tr
+          td  Status:
+          td#changeStatus= status
+        tr
+          td  Cost:
+          td= "$" + cost  + ".00"
+    if status == "Placed"
+      div#placed
+        div#countDown
+          p Time remaining until order ships:
+          br
+          span 0m0s
+        form(name='cancelOrder')
+          label(for='cancelOrder') Cancel Order:
+          input#cancelOrder(type='submit' value='Cancel Order')
+          input#OrderID(type='hidden' name='OrderID' value= order_id)
+          input#time(type='hidden' name='time' value= order_date)
+        form(name='updateShipping' method='POST' action='/update_shipping')
+          label(for='Update') Update Shipping:
+          button#Update(type='button') Update
+          div#ShowUpdate
+            label(for='address') New Address:
+            textarea#address(name='address' rows='3' required='')
+            label Select a new Shipping Method:
+            label(for='flat') Flat Rate
+            input#flat(type='radio' name='shipping' value='Flat Rate' required='')
+            label(for='exp') Expedited
+            input#exp(type='radio' name='shipping' value='Expedited')
+            label(for='Ground') Ground
+            input#Ground(type='radio' name='shipping' value='Ground')
+            input#updateShip(type='hidden' name='updateShip' value= order_id)
+            label(for='updateShipping') Change Shipping:
+            input#updateShipping(type='submit' value='Update')
+            label(for='cancel') Cancel:
+            input#cancel(type='button' value='Cancel')
+
+      script(src='/js/update.js')

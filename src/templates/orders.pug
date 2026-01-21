@@ -1,0 +1,99 @@
+//-Converted to pug by using https://html-to-pug.com
+doctype html 
+html 
+  include header.pug
+  block content 
+    h1
+      | Order Management
+    //- link(rel='stylesheet' href='/css/main.css')
+    //- link(href='https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Gravitas+One&display=swap' rel='stylesheet')
+    #searched
+      p
+        if searched_for.searched != " "
+           br
+           |     You searched for sender: #{searched_for.searched}
+           br
+           |     You searched for status: #{searched_for.status}
+        else
+          br
+          |     You searched for sender:  
+          br
+          |     You searched for status: All Statuses
+    #orders
+      form(method='GET' action='/admin/orders')
+        input(name='query' type='search' placeholder='Search for buyer...')
+        select(name='status')
+          option(value='All Statuses') All Statuses
+          option(value='Arrived') Arrived
+          option(value='Shipped') Shipped
+          option(value='Placed') Placed
+        input#query(type='submit')
+    table
+      tr
+        th #
+        th Status
+        th Cost
+        th From
+        th Address
+        th Product
+        th Notes
+      
+      if load_orders.length > 0 
+        each obj in load_orders
+          tr
+            td 
+                a(href=`/tracking/${obj.order_id}`) #{obj.order_id}
+            td= obj.status   
+            td= "$" + obj.cost  + ".00" 
+            td= obj.from_name
+            td= obj.address
+            td= obj.product
+            td= obj.notes
+        //- for(let i = 0; i < load_orders.length; )
+      
+
+    //-     td
+    //-       a(href='/tracking/0') 0
+    //-     td Shipped
+    //-     td $60.00
+    //-     td Jimmy Dean
+    //-     td
+    //-       | 6789 Fake Ave,
+    //-       | Some City, NM 45587
+    //-     td Blue Flowers
+    //-     td Customer requested Expedited shipping
+    //-   tr
+    //-     td
+    //-       a(href='/tracking/1') 1
+    //-     td Arrived
+    //-     td $60.00
+    //-     td Some Guy
+    //-     td
+    //-       | 4598 W. Winners Street,
+    //-       | Lazy Town, NM 77999
+    //-     td Purple Flowers
+    //-     td Customer requested Flat Rate shipping
+    //-   tr
+    //-     td
+    //-       a(href='/tracking/2') 2
+    //-     td Shipped
+    //-     td $150.50
+    //-     td Peter
+    //-     td
+    //-       | 5678 Not Real,
+    //-       | Loud Lake,
+    //-       | Somewhere 98766
+    //-     td Many Flowers Package
+    //-     td Customer requested Expedited shipping
+    //-   tr
+    //-     td
+    //-       a(href='/tracking/3') 3
+    //-     td Arrived
+    //-     td $35.00
+    //-     td Thomas Finn
+    //-     td
+    //-       | 777 Lucky Guy Road,
+    //-       | Silly City,
+    //-       | Nowhere 77005
+    //-     td Roses
+    //-     td Customer requested Ground shipping

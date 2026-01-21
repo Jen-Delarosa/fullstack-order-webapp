@@ -1,0 +1,50 @@
+//-Converted to pug by using https://html-to-pug.com
+doctype html 
+html 
+  include header.pug
+
+
+    //- link(rel='stylesheet' href='/css/main.css')
+    
+    //- link(href='https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Gravitas+One&display=swap' rel='stylesheet')
+  block content
+    h1 Place an Order 
+
+    div#successOrder
+      p Order placed successfully!
+      p#orderNum Order Id: 
+    div#failOrder
+      p Order Failed
+      p#orderErr Errors: 
+    div#newOrder
+      form#order_form(name='addNewOrder')
+        label#fill(for='preFill') Pre-Fill Document:
+        input#preFill(type='button' value='Click to fill out form')
+        label(for='Product') Select a Product:
+        select#Product(name='Product')
+          option(value='Products') Products
+          option(value='Purple Flowers') Purple Flowers $30.00
+          option(value='Blue Flowers') Blue Flowers $30.00
+          option(value='Roses') Roses $25.00
+        div#selectQuantity
+          label(for='quantity') Quantity:
+          input#quantity(name='quantity' type='number' required='' value='0')
+          p#Total  Total: 
+        label(for='from_name') From:
+        if cookies.customer_name != " "
+          input#from_name(name='from_name' type='text' placeholder='Enter name' value= cookies.customer_name)
+        else
+          input#from_name(name='from_name' type='text' placeholder='Enter name')
+        label(for='address') Recipient Name and Address:
+        textarea#address(name='address' rows='3')
+        label Shipping Method:
+        label(for='flat') Flat Rate
+        input#flat(type='radio' name='shipping' value='Flat Rate')
+        label(for='exp') Expedited
+        input#exp(type='radio' name='shipping' value='Expedited')
+        label(for='Ground') Ground
+        input#Ground(type='radio' name='shipping' value='Ground')
+        label Remember my Name:
+        input#remember_me(type='checkbox' name='remember_me')
+        input#order_form1(type='submit')
+      script(src='/js/order.js')
