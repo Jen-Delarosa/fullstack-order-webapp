@@ -129,7 +129,6 @@ div>img{
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    /* background-color: whitesmoke; */
     gap:20px;
     padding:10px;
 }
