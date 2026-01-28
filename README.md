@@ -12,7 +12,7 @@ The project also includes an admin page where admins can search and filter order
 - Dynamic order status updates are visible to customers in real-time
 - Admin page with search and filter functionality by customer name and order status
 
-## Skills Used: 
+## Skills Developed: 
 - Backend: Node.js, Express.js
 - Database: MySQL (design and data management)
 - Frontend: HTML, CSS, Pug  
