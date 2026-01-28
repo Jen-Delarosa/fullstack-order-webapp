@@ -227,9 +227,7 @@ app.post("/api/order", async(req,res)=>{
       // console.log(result.status)
       res.status(result.status).json({status: "error", errors: result.errors})
     }
-    // else{
-    //   res.status(400).json({status : "error", errors: "invalid json"})
-    // }
+  
     // body is the body of the api order reuqest and contains all fields from the form
     // res.render("order.pug")
   });
