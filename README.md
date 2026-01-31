@@ -19,7 +19,7 @@ The project also includes an admin page where admins can search and filter order
 
 
 
-## Image of main page: 
+## Image of Main Page: 
 
 ![about_page](src/screenshots/about_page.png)
 
